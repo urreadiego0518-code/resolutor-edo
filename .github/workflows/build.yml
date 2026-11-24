@@ -30,7 +30,8 @@ jobs:
           mkdir -p out pkg
           find desktop-java/src -name "*.java" > fuentes.txt
           javac -encoding UTF-8 -d out @fuentes.txt
-          jar --create --file pkg/ResolutorEDO.jar --main-class edo.Main -C out .
+          jar --create --file pkg/ResolutorEDO.jar
+          cp pkg/ResolutorEDO.jar ResolutorEDO.jar --main-class edo.Main -C out .
 
       - name: Generar app nativa (Linux)
         if: runner.os == 'Linux'
@@ -54,7 +55,7 @@ jobs:
         with:
           name: escritorio-${{ runner.os }}
           path: |
-            pkg/ResolutorEDO.jar
+            ResolutorEDO.jar
             ResolutorEDO-linux.tar.gz
             ResolutorEDO-windows.zip
           if-no-files-found: ignore
