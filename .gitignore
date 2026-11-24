@@ -1,0 +1,32 @@
+# Java
+*.class
+desktop-java/out/
+desktop-java/build/
+desktop-java/dist/
+desktop-java/lib/
+desktop-java/ResolutorEDO.jar
+hs_err_pid*
+replay_pid*
+
+# NetBeans
+desktop-java/nbproject/private/
+
+# Android / Gradle
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+android/.kotlin/
+android/.idea/
+android/captures/
+*.apk
+*.aab
+*.keystore
+*.jks
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Capturas generadas por tools/Capturas.java
+capturas_java/
