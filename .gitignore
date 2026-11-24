@@ -30,3 +30,9 @@ Thumbs.db
 
 # Capturas generadas por tools/Capturas.java
 capturas_java/
+
+# Salida del workflow
+out/
+pkg/
+dist/
+fuentes.txt

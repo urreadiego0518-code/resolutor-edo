@@ -18,8 +18,8 @@ jobs:
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: "21"
@@ -27,17 +27,17 @@ jobs:
       - name: Compilar y empaquetar
         shell: bash
         run: |
-          mkdir -p out
+          mkdir -p out pkg
           find desktop-java/src -name "*.java" > fuentes.txt
           javac -encoding UTF-8 -d out @fuentes.txt
-          jar --create --file ResolutorEDO.jar --main-class edo.Main -C out .
+          jar --create --file pkg/ResolutorEDO.jar --main-class edo.Main -C out .
 
       - name: Generar app nativa (Linux)
         if: runner.os == 'Linux'
         shell: bash
         run: |
           jpackage --type app-image --name ResolutorEDO \
-            --input . --main-jar ResolutorEDO.jar --main-class edo.Main \
+            --input pkg --main-jar ResolutorEDO.jar --main-class edo.Main \
             --dest dist --java-options -Xmx512m
           tar -czf ResolutorEDO-linux.tar.gz -C dist ResolutorEDO
 
@@ -46,15 +46,15 @@ jobs:
         shell: bash
         run: |
           jpackage --type app-image --name ResolutorEDO \
-            --input . --main-jar ResolutorEDO.jar --main-class edo.Main \
+            --input pkg --main-jar ResolutorEDO.jar --main-class edo.Main \
             --dest dist --java-options -Xmx512m
           cd dist && 7z a ../ResolutorEDO-windows.zip ResolutorEDO
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: escritorio-${{ runner.os }}
           path: |
-            ResolutorEDO.jar
+            pkg/ResolutorEDO.jar
             ResolutorEDO-linux.tar.gz
             ResolutorEDO-windows.zip
           if-no-files-found: ignore
@@ -63,8 +63,8 @@ jobs:
     name: Android
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: "21"
@@ -78,7 +78,7 @@ jobs:
       - name: Renombrar
         run: cp android/app/build/outputs/apk/debug/app-debug.apk ResolutorEDO.apk
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: android-apk
           path: ResolutorEDO.apk
@@ -89,7 +89,7 @@ jobs:
     needs: [escritorio, android]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v5
         with:
           path: artefactos
           merge-multiple: true
