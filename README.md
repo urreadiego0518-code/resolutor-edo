@@ -12,12 +12,7 @@ comparar métodos numéricos sin abrir MATLAB ni escribir un script cada vez.
 Viene en dos versiones: una de escritorio en Java (Swing) y una para Android
 (Kotlin + Jetpack Compose). Las dos usan el mismo motor de cálculo.
 
-<p align="center">
-  <img src="docs/qr.png" width="190" alt="Código QR del repositorio">
-</p>
-
-Escanea el QR si quieres abrir el repo en el móvil:
-`https://github.com/urreadiego0518-code/resolutor-edo`
+Repositorio: `https://github.com/urreadiego0518-code/resolutor-edo`
 
 ![Ventana principal](docs/escritorio-grafica.png)
 
